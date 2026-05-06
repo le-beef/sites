@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel de Eventos</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef1f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    /* BOTÃO NOVO */
+    .novo-btn {
+      background: #28a745;
+      color: white;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    /* FORM ESCONDIDO */
+    .form-box {
+      display: none;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+    }
+
+    .salvar {
+      background: #007bff;
+      color: white;
+      border: none;
+    }
+
+    .cancelar {
+      background: gray;
+      color: white;
+      border: none;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card a {
+      display: block;
+      font-weight: bold;
+      font-size: 22px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+
+    .descricao {
+      text-align: center;
+      color: #777;
+      font-size: 15px;
+    }
+
+    .excluir {
+      background: red;
+      color: white;
+      margin-top: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>📌 Meus Eventos</h2>
+
+  <button class="novo-btn" onclick="toggleForm()">+ Novo Evento</button>
+
+  <div class="form-box" id="formBox">
+    <input id="titulo" placeholder="Título">
+    <input id="link" placeholder="Link">
+    <input id="descricao" placeholder="Descrição">
+
+    <button class="salvar" onclick="salvar()">Salvar</button>
+    <button class="cancelar" onclick="toggleForm()">Cancelar</button>
+  </div>
+
+  <div id="lista"></div>
+</div>
+
+<script type="module">
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBk3KLMwXjHe4OvrwdLrkywiJkyhNMpB0o",
+    authDomain: "reserva2-d23b2.firebaseapp.com",
+    projectId: "reserva2-d23b2",
+    storageBucket: "reserva2-d23b2.firebasestorage.app",
+    messagingSenderId: "353160897418",
+    appId: "1:353160897418:web:a3627716e8554f0db89e73"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const SENHA = "aa120805bb";
+
+  function pedirSenha() {
+    const senha = prompt("Digite a senha:");
+    return senha === SENHA;
+  }
+
+  // MOSTRAR / ESCONDER FORM
+  window.toggleForm = function () {
+    const form = document.getElementById("formBox");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  };
+
+  // SALVAR
+  window.salvar = async function () {
+
+    if (!pedirSenha()) {
+      alert("Senha incorreta!");
+      return;
+    }
+
+    const titulo = document.getElementById("titulo").value;
+    const link = document.getElementById("link").value;
+    const descricao = document.getElementById("descricao").value;
+
+    if (!titulo || !link) {
+      alert("Preencha tudo!");
+      return;
+    }
+
+    await addDoc(collection(db, "eventos"), {
+      titulo,
+      link,
+      descricao
+    });
+
+    limpar();
+    toggleForm();
+    carregar();
+  };
+
+  function limpar() {
+    document.getElementById("titulo").value = "";
+    document.getElementById("link").value = "";
+    document.getElementById("descricao").value = "";
+  }
+
+  // CARREGAR
+  async function carregar() {
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    const querySnapshot = await getDocs(collection(db, "eventos"));
+
+    querySnapshot.forEach((item) => {
+      const evento = item.data();
+
+      lista.innerHTML += `
+        <div class="card">
+          <a href="${evento.link}" target="_blank">${evento.titulo}</a>
+          <div class="descricao">${evento.descricao || ""}</div>
+          <button class="excluir" onclick="remover('${item.id}')">Excluir</button>
+        </div>
+      `;
+    });
+  }
+
+  // REMOVER
+  window.remover = async function (id) {
+
+    if (!pedirSenha()) {
+      alert("Senha incorreta!");
+      return;
+    }
+
+    await deleteDoc(doc(db, "eventos", id));
+    carregar();
+  };
+
+  carregar();
+
+</script>
+
+</body>
+</html>
