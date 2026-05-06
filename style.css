@@ -1,0 +1,295 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #eef1f5;
+  margin: 0;
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* LOGIN */
+#loginScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: #eef1f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px; /* 👈 ISSO AQUI resolve o corte */
+  box-sizing: border-box;
+}
+
+.login-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+
+  width: 100%;
+  max-width: 350px;
+
+  box-sizing: border-box; /* 👈 importante */
+}
+
+
+/* FORM */
+.form-box {
+  display: none;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  animation: slideDown 0.3s ease;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 18px;
+  margin: 10px 0;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+
+  box-sizing: border-box; /* 🔥 ESSA LINHA RESOLVE */
+}
+
+/* BOTÕES */
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  transition: 0.2s;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 18px;
+  margin-top: 15px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  animation: fadeUp 0.4s ease;
+}
+
+.card a {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.descricao {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* BOTÕES */
+.editar {
+  background: #007bff;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.excluir {
+  background: red;
+  color: white;
+}
+
+/* BOTÃO FLUTUANTE */
+.novo-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  font-size: 32px;
+  background: green;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 🔥 ANIMAÇÕES MELHORADAS */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 📱 MOBILE REAL (AGORA SIM) */
+@media (max-width: 600px) {
+
+  body {
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .card a {
+    font-size: 18px;
+  }
+
+  .descricao {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 13px;
+  }
+
+  input {
+    font-size: 15px;
+    padding: 13px;
+  }
+
+  .novo-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+}
+
+/* 🔥 CORREÇÃO DE LARGURA */
+#app {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* 📱 MOBILE GRANDE (OCUPAR TELA TODA) */
+@media (max-width: 600px) {
+
+  #app {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  body {
+    padding: 5px;
+  }
+
+  .card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+}
+
+.form-box {
+  animation: aparecer 0.2s ease;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.botoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.botoes button {
+  flex: 1;
+  width: 100%;
+}
+
+/* CONTAINER DOS BOTÕES */
+.botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* BOTÕES ESTILO APP */
+.botoes button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+/* EFEITO TOQUE */
+.botoes button:active {
+  transform: scale(0.95);
+}
+
+/* EDITAR */
+.editar {
+  background: #e3f0ff;
+  color: #007bff;
+}
+
+/* EXCLUIR */
+.excluir {
+  background: #ffe5e5;
+  color: #d60000;
+}
