@@ -151,7 +151,7 @@ async function carregar() {
 
         <div class="descricao">
           <span>${destaque}</span>
-          📅 ${dataFormatada}
+           ${dataFormatada}
           <br>
           ${evento.descricao || ""}
         </div>
