@@ -2,43 +2,106 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Eventos</title>
-  <link rel="stylesheet" href="style.css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Eventos</title>
 
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <!-- LOGIN -->
 <div id="loginScreen">
+
   <div class="login-box">
-    <h3>🔐 Acesso</h3>
-    <input type="password" id="senhaEntrada" placeholder="Senha">
-    <button onclick="verificarLogin()">Entrar</button>
+
+    <h2>🔐 Acesso</h2>
+
+    <input
+      type="password"
+      id="senhaEntrada"
+      placeholder="Digite a senha"
+    >
+
+    <button onclick="verificarLogin()">
+      Entrar
+    </button>
+
   </div>
+
 </div>
 
 <!-- APP -->
 <div id="app" style="display:none;">
-  <h2>📌 Meus Eventos</h2>
 
-  <div id="formBox" class="form-box">
-    <input id="titulo" placeholder="Título">
-    <input id="link" placeholder="Link">
-    <input type="datetime-local" id="data">
-    <input id="descricao" placeholder="Descrição">
-    <input type="password" id="senhaAcao" placeholder="Senha para salvar">
-
-    <button onclick="salvar()">Salvar</button>
-    <button onclick="toggleForm()">Cancelar</button>
+  <!-- TOPO -->
+  <div class="topo">
+    <h1>📌 Meus Eventos</h1>
   </div>
 
+  <!-- FORM -->
+  <div id="formBox" class="form-box">
+
+    <input id="titulo" placeholder="Título do evento">
+
+    <input id="link" placeholder="Link do evento">
+
+    <input type="datetime-local" id="data">
+
+    <input id="descricao" placeholder="Senha do evento">
+    <input id="observacao" placeholder="Observação">
+
+    <input
+      type="password"
+      id="senhaAcao"
+      placeholder="Senha para salvar"
+    >
+
+    <button class="salvar-btn" onclick="salvar()">
+      Salvar
+    </button>
+
+    <button class="cancelar-btn" onclick="toggleForm()">
+      Cancelar
+    </button>
+
+  </div>
+
+  <!-- LISTA -->
   <div id="lista"></div>
 
-  <button class="novo-btn" onclick="toggleForm()">+</button>
+  <!-- CALENDÁRIO -->
+  <div class="calendario-box">
+
+    <div class="calendario-topo">
+      <button onclick="mesAnterior()">◀</button>
+
+      <h2 id="mesAno"></h2>
+
+      <button onclick="proximoMes()">▶</button>
+    </div>
+
+    <div class="dias-semana">
+      <div>DOM</div>
+      <div>SEG</div>
+      <div>TER</div>
+      <div>QUA</div>
+      <div>QUI</div>
+      <div>SEX</div>
+      <div>SAB</div>
+    </div>
+
+    <div id="calendario" class="calendario"></div>
+
+  </div>
+
+  <!-- BOTÃO NOVO -->
+  <button class="novo-btn" onclick="toggleForm()">
+    +
+  </button>
+
 </div>
 
-<!-- FIREBASE SEM MODULE -->
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 

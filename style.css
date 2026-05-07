@@ -1,264 +1,297 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #eef1f5;
+* {
   margin: 0;
-  padding: 10px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h2 {
+body {
+  background: #ececec;
+  font-family: Arial, sans-serif;
+  padding: 12px;
+}
+
+#app {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+}
+
+/* TOPO */
+.topo {
+  background: #dddddd;
+  padding: 28px 20px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+}
+
+.topo h1 {
+  font-size: 26px;
+  font-weight: bold;
+  color: #000;
 }
 
 /* LOGIN */
 #loginScreen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #eef1f5;
+  inset: 0;
+  background: #ececec;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
-  box-sizing: border-box;
+  padding: 20px;
 }
 
 .login-box {
-  background: white;
-  padding: 20px;
-  border-radius: 14px;
   width: 100%;
   max-width: 350px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0d6efd;
+}
+
+/* BOTÕES */
+button {
+  border: none;
+  cursor: pointer;
+}
+
+.login-box button,
+.salvar-btn,
+.cancelar-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.login-box button,
+.salvar-btn {
+  background: #0d6efd;
+  color: white;
+}
+
+.cancelar-btn {
+  background: #dcdcdc;
+  color: black;
+  margin-top: 10px;
 }
 
 /* FORM */
 .form-box {
   display: none;
   background: white;
-  padding: 15px;
-  border-radius: 15px;
-  margin-bottom: 15px;
-  animation: slideDown 0.3s ease;
-}
-
-/* INPUT */
-input {
-  width: 100%;
+  border-radius: 14px;
   padding: 16px;
-  margin: 10px 0;
-  font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  transition: 0.2s;
+  margin-bottom: 15px;
 }
 
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 6px rgba(0,123,255,0.3);
-}
-
-/* BOTÕES GERAIS */
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  border-radius: 10px;
-  border: none;
-  transition: 0.2s;
-}
-
-button:active {
-  transform: scale(0.96);
-}
-
-/* CARD */
+/* CARD EVENTO */
 .card {
-  background: white;
-  padding: 18px;
-  margin-top: 15px;
-  border-radius: 18px;
-  text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: 0.25s;
-  animation: fadeUp 0.4s ease;
+  background: #f5f5f5;
+  border-top: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 16px 12px;
+  margin-bottom: 10px;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+.evento-info {
+  flex: 1;
 }
 
-/* LINK DO EVENTO */
 .titulo-link {
   display: block;
-  text-align: center;
-  font-weight: bold;
-  font-size: 22px;
-  color: #0d6efd;
   text-decoration: none;
-  padding: 12px;
-  border-radius: 12px;
-  transition: 0.25s;
-}
-
-.titulo-link:hover {
-  background: linear-gradient(135deg, #e9f2ff, #dce8ff);
-  transform: scale(1.03);
-}
-
-.titulo-link:active {
-  transform: scale(0.97);
-}
-
-/* DESCRIÇÃO */
-.descricao {
-  margin: 10px 0;
-  font-size: 16px;
-  color: #555;
-  line-height: 1.5;
-}
-
-/* DATA DESTACADA */
-.descricao span {
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
   color: #0d6efd;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
   margin-bottom: 5px;
 }
 
-/* BOTÕES (APP STYLE) */
+.data {
+  color: #444;
+  font-size: 13px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.senha {
+  color: #555;
+  font-size: 13px;
+}
+
+.observacao {
+  color: #666;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* BOTÕES AÇÃO */
 .botoes {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
 }
 
 .botoes button {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  border: none;
+  font-size: 18px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
 }
 
-/* EDITAR */
 .editar {
-  background: linear-gradient(135deg, #4facfe, #007bff);
+  background: linear-gradient(135deg, #39a7ff, #0070ff);
   color: white;
 }
 
-/* EXCLUIR */
 .excluir {
-  background: linear-gradient(135deg, #ff6b6b, #d60000);
+  background: linear-gradient(135deg, #ff4444, #df0000);
   color: white;
-}
-
-/* HOVER PREMIUM */
-.botoes button:hover {
-  transform: translateY(-3px) scale(1.08);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
 
 /* BOTÃO FLUTUANTE */
 .novo-btn {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  bottom: 20px;
+
   width: 65px;
   height: 65px;
+
   border-radius: 50%;
-  font-size: 32px;
-  background: linear-gradient(135deg, #28a745, #1e7e34);
+
+  background: linear-gradient(135deg, #2fd16d, #009f41);
   color: white;
+
+  font-size: 34px;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+}
+
+/* EVENTO PRÓXIMO */
+.card.proximo {
+  background: #fff8cc;
+}
+
+/* CALENDÁRIO */
+.calendario-box {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 20px;
+}
+
+.calendario-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.calendario-topo h2 {
+  font-size: 18px;
+}
+
+.calendario-topo button {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #0d6efd;
+  color: white;
+  font-size: 18px;
+}
+
+.dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.dias-semana div {
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #666;
+}
+
+.calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.dia {
+  height: 45px;
+  border-radius: 10px;
+  background: #f3f3f3;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  cursor: pointer;
-  transition: 0.2s;
+
+  font-size: 14px;
 }
 
-.novo-btn:hover {
-  transform: scale(1.1);
+.dia.reservado {
+  background: #ff3d3d;
+  color: white;
+  font-weight: bold;
 }
 
-/* EVENTO DESTACADO */
-.card.destaque {
-  border: 2px solid #007bff;
-  background: linear-gradient(135deg, #f0f6ff, #ffffff);
-}
-
-/* ANIMAÇÕES */
-@keyframes slideDown {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.dia.hoje {
+  border: 2px solid #0d6efd;
 }
 
 /* MOBILE */
-@media (max-width: 600px) {
-
-  body {
-    padding: 6px;
-  }
+@media(max-width: 600px) {
 
   .titulo-link {
-    font-size: 20px;
+    font-size: 15px;
   }
 
-  .descricao {
-    font-size: 17px;
-  }
-
-  .descricao span {
-    font-size: 22px;
+  .data,
+  .senha {
+    font-size: 12px;
   }
 
   .botoes button {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
   }
 
-  .novo-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-  }
-}
-
-/* LARGURA APP */
-#app {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
 }
