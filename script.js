@@ -13,8 +13,11 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // SENHAS
-const SENHA_ENTRADA = "8387";
+const SENHA_ENTRADA = "8383";
 const SENHA_ACAO = "8387";
+
+// VERSÃO LOGIN
+const VERSAO_LOGIN = "8383";
 
 let editandoId = null;
 
@@ -32,7 +35,7 @@ function verificarLogin() {
 
     document.getElementById("app").style.display = "block";
 
-    localStorage.setItem("logado", "sim");
+    localStorage.setItem("logado", VERSAO_LOGIN);
 
   } else {
 
@@ -438,7 +441,7 @@ function mesAnterior() {
 window.mesAnterior = mesAnterior;
 
 // LOGIN PERSISTENTE
-if (localStorage.getItem("logado") === "sim") {
+if (localStorage.getItem("logado") === VERSAO_LOGIN) {
 
   document.getElementById("loginScreen").style.display = "none";
 
