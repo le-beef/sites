@@ -13,8 +13,8 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // SENHAS
-const SENHA_ENTRADA = "1234";
-const SENHA_ACAO = "1234";
+const SENHA_ENTRADA = "8387";
+const SENHA_ACAO = "8387";
 
 let editandoId = null;
 
