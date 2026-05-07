@@ -278,6 +278,11 @@ button {
   border: 2px solid #0d6efd;
 }
 
+.whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+}
+
 /* MOBILE */
 @media(max-width: 600px) {
 

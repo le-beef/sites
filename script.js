@@ -220,28 +220,41 @@ async function carregar() {
 
         <div class="botoes">
 
-          <button
-            class="editar"
-            onclick="editar(
-              '${evento.id}',
-              '${evento.titulo}',
-              '${evento.link}',
-              '${evento.data}',
-              '${evento.descricao || ''}',
-	      '${evento.observacao || ''}'
-            )"
-          >
-            ✏️
-          </button>
+  <button
+    class="editar"
+    onclick="editar(
+      '${evento.id}',
+      '${evento.titulo}',
+      '${evento.link}',
+      '${evento.data}',
+      '${evento.descricao || ''}',
+      '${evento.observacao || ''}'
+    )"
+  >
+    ✏️
+  </button>
 
-          <button
-            class="excluir"
-            onclick="remover('${evento.id}')"
-          >
-            ❌
-          </button>
+  <button
+    class="excluir"
+    onclick="remover('${evento.id}')"
+  >
+    ❌
+  </button>
 
-        </div>
+  <button
+    class="whatsapp"
+    onclick="compartilharWhats(
+      '${evento.titulo}',
+      '${evento.link}',
+      '${evento.data}',
+      '${evento.descricao || ''}',
+      '${evento.observacao || ''}'
+    )"
+  >
+    📲
+  </button>
+
+</div>
 
       </div>
 
@@ -425,3 +438,32 @@ window.mesAnterior = mesAnterior;
 // INICIAR
 carregar();
 renderizarCalendario();
+
+// WHATSAPP
+function compartilharWhats(
+  titulo,
+  link,
+  data,
+  senha,
+  observacao
+) {
+
+  const dataFormatada = new Date(data)
+    .toLocaleString('pt-BR');
+
+  const mensagem =
+`📌 *${titulo}*
+
+📅 ${dataFormatada}
+
+🔗 ${link}
+
+🔑 Senha: ${senha || '---'}`;
+
+  const url =
+`https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, '_blank');
+}
+
+window.compartilharWhats = compartilharWhats;
