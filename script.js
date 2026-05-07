@@ -32,6 +32,8 @@ function verificarLogin() {
 
     document.getElementById("app").style.display = "block";
 
+    localStorage.setItem("logado", "sim");
+
   } else {
 
     alert("Senha incorreta!");
@@ -434,6 +436,15 @@ function mesAnterior() {
 }
 
 window.mesAnterior = mesAnterior;
+
+// LOGIN PERSISTENTE
+if (localStorage.getItem("logado") === "sim") {
+
+  document.getElementById("loginScreen").style.display = "none";
+
+  document.getElementById("app").style.display = "block";
+
+}
 
 // INICIAR
 carregar();
