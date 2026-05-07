@@ -361,8 +361,48 @@ function renderizarCalendario() {
     });
 
     if (possuiEvento) {
-      elementoDia.classList.add("reservado");
-    }
+
+  elementoDia.classList.add("reservado");
+
+  elementoDia.onclick = () => {
+
+    const eventosDia = eventosGlobais.filter(evento => {
+
+      const dataEvento = new Date(evento.data);
+
+      return (
+        dataEvento.getDate() === dia &&
+        dataEvento.getMonth() === mes &&
+        dataEvento.getFullYear() === ano
+      );
+
+    });
+
+    let mensagem = `EVENTOS DO DIA ${dia}\n\n`;
+
+    eventosDia.forEach(evento => {
+
+      const hora = new Date(evento.data)
+        .toLocaleTimeString('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+      mensagem +=
+`\n📌 ${evento.titulo}
+🕒 ${hora}
+🔑 ${evento.descricao || '---'}
+📝 ${evento.observacao || '---'}
+
+`;
+
+    });
+
+    alert(mensagem);
+
+  };
+
+}
 
     calendario.appendChild(elementoDia);
   }
